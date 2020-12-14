@@ -1,0 +1,22 @@
+Estimating Recovery Time Objective (RTO) and Recovery Point Objective (RPO) for this project's Multi-AZ architecture
+
+# Estimate RTO and RPO for a single AZ outage.
+The newly created database is running a Multi-AZ replication thus making the RPO close to zero since AWS maintains a "synchronous standby replica in a different Availability Zone" meaning that data is constantly replicated between the AZs making both AZs to have exactly the same data contents of the DB at any given point in time. 
+The failover process however can take upwards of 120 seconds or in worst case scenarios when "large transactions or a lengthy recovery process can increase failover time," making the RTO an estimated 2 minutes. Failing over a DB to its standby replica is an automated process handled by AWS itself. However, the failover changes the DB DNS, therefore it is important to note that application configuration needs to take the estimated RTO time into consideration in order to limit loss of transactions to the shortest possible. As noted in the RDS User Guide, depending on the programing language the application was written with, an adequate TTL for DNS lookups is required in order to prevent caching of the old DNS and receive the new IP address "by re-querying the DNS."
+
+RTO => 2 minutes for failover + 1 minute for application reconnect (TTL of 60 seconds): total 3 minutes
+RPO => 0 minutes
+
+# Estimated RTO and RPO for a single region outage.
+The cross region replication of a RDS database in AWS is performed asynchronously and therefore the larger the lag between the active and replication DBs the bigger the RPO. Many factors influence the lag, including but not limited to the distance between the regions, the transaction volume being replicated, etc. In this example the number of connections and volume of data were insufficient to allow for any direct measurements, however a fair estimate would be that the lag should not be greater than 10 minutes on average and that a real-life production environment would have adequate monitoring in case it crosses this threshold. Therefore the estimated RPO is 10 minutes. 
+Performing the read replica promotion takes only few minutes until the DB becomes available again. However it is highly recommended that prior to promoting the replica the administrator should verify that any pending transactions are complete (5 minutes) in the original master DB and the replication lag is fully consumed (10 minutes). As a post step of promoting the DB it is required to point the application to the newly promoted database (2 minutes). The RTO in this case can be 20 minutes with automation, or 60 minutes without (considering: 20 minutes for pager plus admin connect, 20 minutes for investigation and failover initiation, and the 20 minutes for failover and reconnect).
+
+
+RTO => 20 minutes with automation, 60 minutes without.
+RPO => 10 minutes
+
+
+
+# Source:
+"Amazon RDS User Guide", Amazon Web Services, Inc., December 11, 2020
+   docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html. Accessed 13 Dec. 2020.
