@@ -1,3 +1,7 @@
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
 owners.
 
@@ -12,7 +16,7 @@ mysql> show databases;
 | performance_schema |
 | udacity            |
 +--------------------+
-4 rows in set (0.00 sec)
+4 rows in set (0.01 sec)
 
 mysql> use udacity;
 Reading table information for completion of table and column names
@@ -25,23 +29,22 @@ mysql> show tables;
 +-------------------+
 | pet               |
 +-------------------+
-1 row in set (0.00 sec)
+1 row in set (0.01 sec)
 
 mysql> select * from pet;
 +----------+-------+---------+------+------------+-------+
 | name     | owner | species | sex  | birth      | death |
 +----------+-------+---------+------+------------+-------+
 | Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
-| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
 +----------+-------+---------+------+------------+-------+
-2 rows in set (0.00 sec)
+1 row in set (0.00 sec)
 
 mysql> insert into pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
 ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
-mysql> exit;
+mysql> exit
 Bye
-[ec2-user@ip-10-10-38-47 ~]$ clear
-[ec2-user@ip-10-10-38-47 ~]$ mysql -h udacity-replica.cxa9aazf092z.us-west-2.rds.amazonaws.com -P 3306 -u admin -p
+[ec2-user@ip-10-10-3-5 ~]$ clear
+[ec2-user@ip-10-10-3-5 ~]$ mysql -h udacity-replica.cxa9aazf092z.us-west-2.rds.amazonaws.com -P 3306 -u admin -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 11
@@ -84,23 +87,21 @@ mysql> select * from pet;
 | name     | owner | species | sex  | birth      | death |
 +----------+-------+---------+------+------------+-------+
 | Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
-| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
 +----------+-------+---------+------+------------+-------+
-2 rows in set (0.01 sec)
+1 row in set (0.00 sec)
 
-mysql> insert into pet VALUES ('Slim','Benny','snake','m','1996-04-29',NULL);
+mysql> insert into pet VALUES ('Puffball Jr','Diane','hamster','f','2020-08-30',NULL);
 Query OK, 1 row affected (0.01 sec)
 
 mysql> select * from pet;
-+----------+-------+---------+------+------------+-------+
-| name     | owner | species | sex  | birth      | death |
-+----------+-------+---------+------+------------+-------+
-| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
-| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
-| Slim     | Benny | snake   | m    | 1996-04-29 | NULL  |
-+----------+-------+---------+------+------------+-------+
-3 rows in set (0.00 sec)
++-------------+-------+---------+------+------------+-------+
+| name        | owner | species | sex  | birth      | death |
++-------------+-------+---------+------+------------+-------+
+| Puffball    | Diane | hamster | f    | 1999-03-30 | NULL  |
+| Puffball Jr | Diane | hamster | f    | 2020-08-30 | NULL  |
++-------------+-------+---------+------+------------+-------+
+2 rows in set (0.01 sec)
 
-mysql> exit;
+mysql> exit
 Bye
-[ec2-user@ip-10-10-38-47 ~]$
+[ec2-user@ip-10-10-3-5 ~]$

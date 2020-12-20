@@ -1,155 +1,106 @@
-marcel@Lenovo-PC:~$ ls
-udacity.pem
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 4.4.0-19041-Microsoft x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sun Dec 20 15:24:41 EST 2020
+
+  System load:    0.52      Processes:              7
+  Usage of /home: unknown   Users logged in:        0
+  Memory usage:   80%       IPv4 address for wifi0: 10.0.0.149
+  Swap usage:     4%
+
+
+12 updates can be installed immediately.
+10 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+
+
+This message is shown once a day. To disable it please create the
+/home/marcel/.hushlogin file.
 marcel@Lenovo-PC:~$ ll -art
-total 20
+total 16
 drwxr-xr-x 1 root   root   4096 Jul  4 23:49 ../
 -rw-r--r-- 1 marcel marcel  220 Jul  4 23:49 .bash_logout
--rw-r--r-- 1 marcel marcel 3771 Jul  4 23:49 .bashrc
 -rw-r--r-- 1 marcel marcel  807 Jul  4 23:49 .profile
 drwxr-xr-x 1 marcel marcel 4096 Jul  4 23:50 .landscape/
 -rw-r--r-- 1 marcel marcel    0 Jul  4 23:52 .sudo_as_admin_successful
 drwxr-xr-x 1 marcel marcel 4096 Dec  8 21:42 .local/
 -rw------- 1 marcel marcel 1976 Dec  8 21:43 .viminfo
--rw------- 1 marcel marcel  819 Dec  9 09:16 .bash_history
--rw-rw-rw- 1 marcel marcel    0 Dec 13 19:55 .motd_shown
 drwx------ 1 marcel marcel 4096 Dec 13 20:06 .ssh/
+drwxr-xr-x 1 marcel marcel 4096 Dec 14 15:48 aws.pemkeys/
+drwxr-xr-x 1 marcel marcel 4096 Dec 14 16:25 .aws/
+-rw-r--r-- 1 marcel marcel 3813 Dec 18 21:30 .bashrc
+drwxr-xr-x 1 marcel marcel 4096 Dec 18 21:34 .vscode-server/
+drwxr-xr-x 1 marcel marcel 4096 Dec 18 22:23 ./
+drwxr-xr-x 1 marcel marcel 4096 Dec 18 22:24 .terraform.d/
+drwxr-xr-x 1 marcel marcel 4096 Dec 18 22:31 terraform_home/
+-rw------- 1 marcel marcel 3750 Dec 18 22:57 .bash_history
+-rw-rw-rw- 1 marcel marcel    0 Dec 20 15:25 .motd_shown
+marcel@Lenovo-PC:~$ ll aws.pemkeys/
+total 8
+drwxr-xr-x 1 marcel marcel 4096 Dec 14 15:48 ./
+drwxr-xr-x 1 marcel marcel 4096 Dec 18 22:23 ../
+-r-------- 1 marcel marcel 1678 Dec 13 22:00 secondary.pem
 -r-------- 1 marcel marcel 1678 Dec 13 20:07 udacity.pem
-drwxr-xr-x 1 marcel marcel 4096 Dec 13 20:07 ./
-marcel@Lenovo-PC:~$ ssh -i "udacity.pem" ec2-user@ec2-18-212-113-188.compute-1.amazonaws.com
-ssh: connect to host ec2-18-212-113-188.compute-1.amazonaws.com port 22: Resource temporarily unavailable
-marcel@Lenovo-PC:~$ ssh -i "udacity.pem" ec2-user@ec2-18-212-113-188.compute-1.amazonaws.com
-The authenticity of host 'ec2-18-212-113-188.compute-1.amazonaws.com (18.212.113.188)' can't be established.
-ECDSA key fingerprint is SHA256:OkACUYjM9yTYlYPRA66388sf9XC5DK+lm+EF0jVKMQY.
+marcel@Lenovo-PC:~$ cd aws.pemkeys/
+marcel@Lenovo-PC:~/aws.pemkeys$ ssh -i "udacity.pem" ec2-user@ec2-3-239-158-149.compute-1.amazonaws.com
+The authenticity of host 'ec2-3-239-158-149.compute-1.amazonaws.com (3.239.158.149)' can't be established.
+ECDSA key fingerprint is SHA256:bU8fuJVe3wfwi/1X1hsMW34FcEy4yRiPNy4FKe8Fvcs.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added 'ec2-18-212-113-188.compute-1.amazonaws.com,18.212.113.188' (ECDSA) to the list of known hosts.
-[ec2-user@ip-10-1-6-116 ~]$ sudo yum update -y
-Red Hat Update Infrastructure 3 Client Configuration Server 8                                                                                  11 kB/s | 3.5 kB     00:00
-Red Hat Enterprise Linux 8 for x86_64 - AppStream from RHUI (RPMs)                                                                             22 MB/s |  24 MB     00:01
-Red Hat Enterprise Linux 8 for x86_64 - BaseOS from RHUI (RPMs)                                                                                26 MB/s |  25 MB     00:00
+Warning: Permanently added 'ec2-3-239-158-149.compute-1.amazonaws.com,3.239.158.149' (ECDSA) to the list of known hosts.[ec2-user@ip-10-1-32-217 ~]$ sudo install mysql
+install: missing destination file operand after 'mysql'
+Try 'install --help' for more information.
+[ec2-user@ip-10-1-32-217 ~]$ sudo yum install mysql
+Red Hat Update Infrastructure 3 Client Configuration Server 8                            13 kB/s | 3.5 kB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - AppStream from RHUI (RPMs)                       30 MB/s |  25 MB     00:00
+Red Hat Enterprise Linux 8 for x86_64 - BaseOS from RHUI (RPMs)                          41 MB/s |  26 MB     00:00
 Dependencies resolved.
-==============================================================================================================================================================================
- Package                              Architecture                  Version                                              Repository                                      Size
-==============================================================================================================================================================================
-Upgrading:
- freetype                             x86_64                        2.9.1-4.el8_3.1                                      rhel-8-baseos-rhui-rpms                        394 k
- microcode_ctl                        x86_64                        4:20200609-2.20201027.1.el8_3                        rhel-8-baseos-rhui-rpms                        4.5 M
-
-Transaction Summary
-==============================================================================================================================================================================
-Upgrade  2 Packages
-
-Total download size: 4.9 M
-Downloading Packages:
-(1/2): freetype-2.9.1-4.el8_3.1.x86_64.rpm                                                                                                    2.3 MB/s | 394 kB     00:00
-(2/2): microcode_ctl-20200609-2.20201027.1.el8_3.x86_64.rpm                                                                                    14 MB/s | 4.5 MB     00:00
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Total                                                                                                                                          13 MB/s | 4.9 MB     00:00
-Running transaction check
-Transaction check succeeded.
-Running transaction test
-Transaction test succeeded.
-Running transaction
-  Preparing        :                                                                                                                                                      1/1
-  Running scriptlet: microcode_ctl-4:20200609-2.20201027.1.el8_3.x86_64                                                                                                   1/1
-  Upgrading        : microcode_ctl-4:20200609-2.20201027.1.el8_3.x86_64                                                                                                   1/4
-  Running scriptlet: microcode_ctl-4:20200609-2.20201027.1.el8_3.x86_64                                                                                                   1/4
-  Upgrading        : freetype-2.9.1-4.el8_3.1.x86_64                                                                                                                      2/4
-  Running scriptlet: microcode_ctl-4:20200609-2.el8.x86_64                                                                                                                3/4
-  Cleanup          : microcode_ctl-4:20200609-2.el8.x86_64                                                                                                                3/4
-  Running scriptlet: microcode_ctl-4:20200609-2.el8.x86_64                                                                                                                3/4
-  Cleanup          : freetype-2.9.1-4.el8.x86_64                                                                                                                          4/4
-  Running scriptlet: microcode_ctl-4:20200609-2.20201027.1.el8_3.x86_64                                                                                                   4/4
-  Running scriptlet: freetype-2.9.1-4.el8.x86_64                                                                                                                          4/4
-  Verifying        : freetype-2.9.1-4.el8_3.1.x86_64                                                                                                                      1/4
-  Verifying        : freetype-2.9.1-4.el8.x86_64                                                                                                                          2/4
-  Verifying        : microcode_ctl-4:20200609-2.20201027.1.el8_3.x86_64                                                                                                   3/4
-  Verifying        : microcode_ctl-4:20200609-2.el8.x86_64                                                                                                                4/4
-
-Upgraded:
-  freetype-2.9.1-4.el8_3.1.x86_64                                              microcode_ctl-4:20200609-2.20201027.1.el8_3.x86_64
-
-Complete!
-[ec2-user@ip-10-1-6-116 ~]$ mysql -h udacity.coduq9gsmla7.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
--bash: mysql: command not found
-[ec2-user@ip-10-1-6-116 ~]$ sudo yum search mysql
-Last metadata expiration check: 0:01:10 ago on Mon Dec 14 02:06:23 2020.
-======================================================================= Name & Summary Matched: mysql ========================================================================
-mysql.x86_64 : MySQL client programs and shared libraries
-apr-util-mysql.x86_64 : APR utility library MySQL DBD driver
-dovecot-mysql.x86_64 : MySQL back end for dovecot
-freeradius-mysql.x86_64 : MySQL support for freeradius
-grafana-mysql.x86_64 : Grafana mysql datasource
-mysql-common.x86_64 : The shared files required for MySQL server and client
-mysql-devel.x86_64 : Files for development of MySQL applications
-mysql-errmsg.x86_64 : The error messages files required by MySQL server
-mysql-libs.x86_64 : The shared libraries required for MySQL clients
-mysql-server.x86_64 : The MySQL server and related files
-mysql-test.x86_64 : The test suite distributed with MySQL
-pcp-pmda-mysql.x86_64 : Performance Co-Pilot (PCP) metrics for MySQL
-perl-DBD-MySQL.x86_64 : A MySQL interface for Perl
-php-mysqlnd.x86_64 : A module for PHP applications that use MySQL databases
-postfix-mysql.x86_64 : Postfix MySQL map support
-python2-PyMySQL.noarch : Pure-Python MySQL client library
-python3-PyMySQL.noarch : Pure-Python MySQL client library
-python38-PyMySQL.noarch : Pure-Python MySQL client library
-qt5-qtbase-mysql.i686 : MySQL driver for Qt5's SQL classes
-qt5-qtbase-mysql.x86_64 : MySQL driver for Qt5's SQL classes
-rsyslog-mysql.x86_64 : MySQL support for rsyslog
-rubygem-mysql2.x86_64 : A simple, fast Mysql library for Ruby, binding to libmysql
-rubygem-mysql2-doc.noarch : Documentation for rubygem-mysql2
-=========================================================================== Summary Matched: mysql ===========================================================================
-mariadb-devel.x86_64 : Files for development of MariaDB/MySQL applications
-mariadb-java-client.noarch : Connects applications developed in Java to MariaDB and MySQL databases
-mariadb-server-utils.x86_64 : Non-essential server utilities for MariaDB/MySQL applications
-[ec2-user@ip-10-1-6-116 ~]$ sudo yum install mysql.x86_64
-Last metadata expiration check: 0:01:35 ago on Mon Dec 14 02:06:23 2020.
-Dependencies resolved.
-==============================================================================================================================================================================
- Package                                     Architecture            Version                                                Repository                                   Size
-==============================================================================================================================================================================
-Installing:
- mysql                                       x86_64                  8.0.21-1.module+el8.2.0+7855+47abd494                  rhel-8-appstream-rhui-rpms                   12 M
+======================================================================================================================== Package                       Arch      Version                                    Repository                     Size
+========================================================================================================================Installing:
+ mysql                         x86_64    8.0.21-1.module+el8.2.0+7855+47abd494      rhel-8-appstream-rhui-rpms     12 M
 Installing dependencies:
- mariadb-connector-c-config                  noarch                  3.0.7-1.el8                                            rhel-8-appstream-rhui-rpms                   13 k
- mysql-common                                x86_64                  8.0.21-1.module+el8.2.0+7855+47abd494                  rhel-8-appstream-rhui-rpms                  148 k
+ mariadb-connector-c-config    noarch    3.1.11-2.el8_3                             rhel-8-appstream-rhui-rpms     15 k
+ mysql-common                  x86_64    8.0.21-1.module+el8.2.0+7855+47abd494      rhel-8-appstream-rhui-rpms    148 k
 Enabling module streams:
- mysql                                                               8.0
+ mysql                                   8.0
 
 Transaction Summary
-==============================================================================================================================================================================
-Install  3 Packages
+========================================================================================================================Install  3 Packages
 
 Total download size: 12 M
 Installed size: 63 M
 Is this ok [y/N]: y
 Downloading Packages:
-(1/3): mariadb-connector-c-config-3.0.7-1.el8.noarch.rpm                                                                                       97 kB/s |  13 kB     00:00
-(2/3): mysql-common-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64.rpm                                                                          948 kB/s | 148 kB     00:00
-(3/3): mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64.rpm                                                                                  20 MB/s |  12 MB     00:00
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Total                                                                                                                                          19 MB/s |  12 MB     00:00
+(1/3): mariadb-connector-c-config-3.1.11-2.el8_3.noarch.rpm                             113 kB/s |  15 kB     00:00
+(2/3): mysql-common-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64.rpm                    762 kB/s | 148 kB     00:00
+(3/3): mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64.rpm                            26 MB/s |  12 MB     00:00
+------------------------------------------------------------------------------------------------------------------------Total                                                                                    24 MB/s |  12 MB     00:00
 Running transaction check
 Transaction check succeeded.
 Running transaction test
 Transaction test succeeded.
 Running transaction
-  Preparing        :                                                                                                                                                      1/1
-  Installing       : mariadb-connector-c-config-3.0.7-1.el8.noarch                                                                                                        1/3
-  Installing       : mysql-common-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                                                                            2/3
-  Installing       : mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                                                                                   3/3
-  Running scriptlet: mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                                                                                   3/3
-  Verifying        : mariadb-connector-c-config-3.0.7-1.el8.noarch                                                                                                        1/3
-  Verifying        : mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                                                                                   2/3
-  Verifying        : mysql-common-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                                                                            3/3
+  Preparing        :                                                                                                1/1
+  Installing       : mariadb-connector-c-config-3.1.11-2.el8_3.noarch                                               1/3
+  Installing       : mysql-common-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                      2/3
+  Installing       : mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                             3/3
+  Running scriptlet: mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                             3/3
+  Verifying        : mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                             1/3
+  Verifying        : mysql-common-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64                                      2/3
+  Verifying        : mariadb-connector-c-config-3.1.11-2.el8_3.noarch                                               3/3
 
 Installed:
-  mariadb-connector-c-config-3.0.7-1.el8.noarch       mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64       mysql-common-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64
+  mariadb-connector-c-config-3.1.11-2.el8_3.noarch               mysql-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64
+  mysql-common-8.0.21-1.module+el8.2.0+7855+47abd494.x86_64
 
 Complete!
-[ec2-user@ip-10-1-6-116 ~]$ mysql -h udacity.coduq9gsmla7.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+[ec2-user@ip-10-1-32-217 ~]$ mysql -h udacity.coduq9gsmla7.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 39
+Your MySQL connection id is 38
 Server version: 8.0.20 Source distribution
 
 Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
@@ -160,10 +111,6 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql> use udacity
-ERROR 1049 (42000): Unknown database 'udacity'
-mysql> SHOW;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -171,75 +118,20 @@ mysql> show databases;
 | information_schema |
 | mysql              |
 | performance_schema |
+| udacity            |
 +--------------------+
-3 rows in set (0.00 sec)
-
-mysql> use mysql
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql> show tables;
-+-------------------------------+
-| Tables_in_mysql               |
-+-------------------------------+
-| columns_priv                  |
-| component                     |
-| db                            |
-| default_roles                 |
-| engine_cost                   |
-| func                          |
-| general_log                   |
-| general_log_template          |
-| global_grants                 |
-| gtid_executed                 |
-| help_category                 |
-| help_keyword                  |
-| help_relation                 |
-| help_topic                    |
-| innodb_index_stats            |
-| innodb_table_stats            |
-| password_history              |
-| plugin                        |
-| procs_priv                    |
-| proxies_priv                  |
-| rds_configuration             |
-| rds_global_status_history     |
-| rds_global_status_history_old |
-| rds_heartbeat2                |
-| rds_history                   |
-| rds_replication_status        |
-| rds_sysinfo                   |
-| role_edges                    |
-| server_cost                   |
-| servers                       |
-| slave_master_info             |
-| slave_relay_log_info          |
-| slave_worker_info             |
-| slow_log                      |
-| slow_log_template             |
-| tables_priv                   |
-| time_zone                     |
-| time_zone_leap_second         |
-| time_zone_name                |
-| time_zone_transition          |
-| time_zone_transition_type     |
-| user                          |
-+-------------------------------+
-42 rows in set (0.00 sec)
-
-mysql> create database udacity;
-Query OK, 1 row affected (0.01 sec)
+4 rows in set (0.00 sec)
 
 mysql> use udacity;
 Database changed
 mysql> show tables;
 Empty set (0.00 sec)
 
-mysql> mysql> CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),
-    ->        species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),
-       species VAR' at line 1
+mysql> CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),
+    ->
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
 mysql> CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20), species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
 Query OK, 0 rows affected (0.06 sec)
 
@@ -251,16 +143,17 @@ mysql> show tables;
 +-------------------+
 1 row in set (0.00 sec)
 
-mysql> insert into pet ("Toto", "Dorothy", "Dog", "M", 1970-01-01);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"Toto", "Dorothy", "Dog", "M", 1970-01-01)' at line 1
-mysql> insert into pet ('Toto', 'Dorothy', 'Dog', 'M', 1970-01-01);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Toto', 'Dorothy', 'Dog', 'M', 1970-01-01)' at line 1
-mysql> insert into pet values ('Toto', 'Dorothy', 'Dog', 'M', 1970-01-01);
-ERROR 1136 (21S01): Column count doesn't match value count at row 1
 mysql> insert into pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
-Query OK, 1 row affected (0.01 sec)
+Query OK, 1 row affected (0.02 sec)
 
-mysql> insert into pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
-Query OK, 1 row affected (0.01 sec)
+mysql> select * from pet;
++----------+-------+---------+------+------------+-------+
+| name     | owner | species | sex  | birth      | death |
++----------+-------+---------+------+------------+-------+
+| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
++----------+-------+---------+------+------------+-------+
+1 row in set (0.00 sec)
 
-mysql>
+mysql> exit;
+Bye
+[ec2-user@ip-10-1-32-217 ~]$
